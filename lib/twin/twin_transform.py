@@ -1,4 +1,8 @@
 import numpy as np
+from twin import twin_overlap_cpython
+
+def  twin_overlaps(boxes, query_boxes):
+    return twin_overlap_cpython(boxes, query_boxes)
 
 def twin_transform(ex_rois, gt_rois):
     ex_lengths = ex_rois[:, 1] - ex_rois[:, 0] + 1.0

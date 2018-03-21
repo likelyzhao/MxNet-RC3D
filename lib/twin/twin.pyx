@@ -12,7 +12,7 @@ cimport numpy as np
 DTYPE = np.float
 ctypedef np.float_t DTYPE_t
 
-def twin_overlaps(
+def twin_overlap_cpython(
         np.ndarray[DTYPE_t, ndim=2] wins,
         np.ndarray[DTYPE_t, ndim=2] query_wins):
     """

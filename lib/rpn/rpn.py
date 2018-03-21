@@ -13,6 +13,8 @@ label =
 import numpy as np
 import numpy.random as npr
 
+bbox_overlaps_cython
+
 from utils.image import get_image, tensor_vstack
 from generate_anchor import generate_anchors
 from bbox.bbox_transform import bbox_overlaps, bbox_transform
