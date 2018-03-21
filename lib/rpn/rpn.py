@@ -16,8 +16,7 @@ import numpy.random as npr
 from utils.image import get_image, tensor_vstack
 from generate_anchor import generate_anchors
 from bbox.bbox_transform import bbox_overlaps, bbox_transform
-from twin import twin_overlaps
-from twin.twin_transform import twin_transform
+from twin.twin_transform import twin_transform,twin_overlaps
 
 def get_rpn_testbatch(roidb, cfg):
     """
