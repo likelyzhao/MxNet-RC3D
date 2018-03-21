@@ -505,12 +505,6 @@ class AnchorLoader(mx.io.DataIter):
         return {'data': data, 'label': label}
 
 
-import numpy as np
-import numpy.random as npr
-import cv2
-from tdcnn.config import cfg
-
-
 DEBUG = False
 
 
