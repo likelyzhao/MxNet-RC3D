@@ -94,7 +94,7 @@ class RC3D(Symbol):
 		rpn_bbox_loss_ = rpn_bbox_weight * mx.symbol.smooth_l1(name='rpn_loss_twin', scalar=3.0,
 		                                                       data=(rpn_bbox_pred - rpn_bbox_target))
 		rpn_bbox_loss = mx.sym.MakeLoss(name='rpn_bbox_loss', data=rpn_bbox_loss_,
-		                                grad_scale=1.0 / config.TRAIN.RPN_BATCH_SIZE)
+		                                grad_scale=1.0 / cfg.TRAIN.RPN_BATCH_SIZE)
 
 		### classification subnet
 
@@ -105,15 +105,15 @@ class RC3D(Symbol):
 
 		rois = mx.contrib.symbol.Proposal(
 			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred, im_info=im_info, name='rois',
-			feature_stride=config.RPN_FEAT_STRIDE, scales=tuple(config.ANCHOR_SCALES), ratios=tuple(config.ANCHOR_RATIOS),
-			rpn_pre_nms_top_n=config.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=config.TRAIN.RPN_POST_NMS_TOP_N,
-			threshold=config.TRAIN.RPN_NMS_THRESH, rpn_min_size=config.TRAIN.RPN_MIN_SIZE)
+			feature_stride=cfg.RPN_FEAT_STRIDE, scales=tuple(cfg.ANCHOR_SCALES), ratios=tuple(cfg.ANCHOR_RATIOS),
+			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
+			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
 
 		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 5), name='gt_boxes_reshape')
 
 		group = mx.symbol.Custom(rois=rois, gt_boxes=gt_boxes_reshape, op_type='proposal_target',
-		                         num_classes=num_classes, batch_images=config.TRAIN.BATCH_IMAGES,
-		                         batch_rois=config.TRAIN.BATCH_ROIS, fg_fraction=config.TRAIN.FG_FRACTION)
+		                         num_classes=num_classes, batch_images=cfg.TRAIN.BATCH_IMAGES,
+		                         batch_rois=cfg.TRAIN.BATCH_ROIS, fg_fraction=cfg.TRAIN.FG_FRACTION)
 
 		rois = group[0]
 		label = group[1]
