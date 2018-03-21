@@ -9,7 +9,7 @@ class RC3D(Symbol):
 		Use __init__ to define parameter network needs
 		"""
 		self.eps = 1e-5
-		self.num_anchors = config.num_anchors
+#		self.num_anchors = config.num_anchors
 		self.use_global_stats = True
 		self.workspace = 512
 		self.units = (3, 4, 23, 3)  # use for 101
