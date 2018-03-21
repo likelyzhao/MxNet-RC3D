@@ -13,8 +13,6 @@ label =
 import numpy as np
 import numpy.random as npr
 
-bbox_overlaps_cython
-
 from utils.image import get_image, tensor_vstack
 from generate_anchor import generate_anchors
 from bbox.bbox_transform import bbox_overlaps, bbox_transform
@@ -223,7 +221,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 #    self._feat_stride = layer_params['feat_stride']
 
     # map of shape (..., H, W)#
-    length, height, width = im_info[0],im_info[1],im_info[2]
+    length, height, width = im_info[0],im_info[1],im_info
     # GT boxes (x1, x2, label)
 #    gt_boxes = bottom[1].data
 
