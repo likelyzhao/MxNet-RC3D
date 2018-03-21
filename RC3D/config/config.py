@@ -40,6 +40,7 @@ config.network.NUM_ANCHORS = len(config.network.ANCHOR_SCALES) * len(config.netw
 config.network.FRAME_SIZE = (128, 171)
 config.network.CROP_SIZE  = 112
 config.network.LENGTH = (512,)
+config.network.num_anchors = 19
 
 
 # dataset related params

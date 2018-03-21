@@ -17,8 +17,8 @@ class RC3D(Symbol):
 
 	def get_symbol(self, cfg, is_train=True):
 
-		num_anchors = cfg.num_anchors
-		num_classes = cfg.num_classes
+		num_anchors = cfg.network.num_anchors
+		num_classes = cfg.dataset.num_classes
 
 		input_data = mx.symbol.Variable(name="data")
 
