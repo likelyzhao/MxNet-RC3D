@@ -220,12 +220,11 @@ class ProposalOperator(mx.operator.CustomOp):
 
 
 
-
 @mx.operator.register("proposal_twin")
-class ProposalProp(mx.operator.CustomOpProp):
+class ProposalTwinProp(mx.operator.CustomOpProp):
     def __init__(self, feat_stride='16', scales='(8, 16, 32)', ratios='(0.5, 1, 2)', output_score='False',
                  rpn_pre_nms_top_n='6000', rpn_post_nms_top_n='300', threshold='0.3', rpn_min_size='16'):
-        super(ProposalProp, self).__init__(need_top_grad=False)
+        super(ProposalTwinProp, self).__init__(need_top_grad=False)
         self._feat_stride = int(feat_stride)
         self._scales = scales
         self._ratios = ratios
