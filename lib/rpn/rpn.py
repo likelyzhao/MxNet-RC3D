@@ -95,9 +95,12 @@ def _get_video_blob(roidb, scale_inds,cfg):
           for idx in xrange(video_info[1], video_info[2], video_info[3]):
 
             video = item['url'].split('v_')[-1].split('.mp4')[0]
-            print(video)
 
-            frame = cv2.imread('%s/image_%s.jpg'%(prefix,str(idx+1).zfill(5)))
+            import os
+            frame_name = os.path.join(prefix,video,'image_%s.jpg' %  str(idx + 1).zfill(5))
+            print(frame_name)
+#            frame = cv2.imread('%s/image_%s.jpg'%(prefix,str(idx+1).zfill(5)))
+            frame = cv2.imread(frame_name)
 
             frame = prep_im_for_blob(frame, cfg.network.PIXEL_MEANS, tuple(cfg.network.FRAME_SIZE[::-1]),
                                      cfg.network.CROP_SIZE, random_idx)
