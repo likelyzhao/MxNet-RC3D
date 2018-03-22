@@ -14,7 +14,7 @@ import numpy as np
 import numpy.random as npr
 
 from utils.image import get_image, tensor_vstack
-from generate_anchor import generate_anchors
+from generate_anchor import generate_anchors,generate_anchors_twin
 from bbox.bbox_transform import bbox_overlaps, bbox_transform
 from twin.twin_transform import twin_transform,twin_overlaps
 
@@ -233,7 +233,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 
 
     scales = np.array(scales, dtype=np.float32)
-    base_anchors = generate_anchors(base_size=feat_stride, ratios=list(ratios), scales=scales)
+    base_anchors = generate_anchors_twin(base_size=feat_stride, scales=scales)
     num_anchors = base_anchors.shape[0]
     feat_height, feat_width = feat_shape[-2:]
 

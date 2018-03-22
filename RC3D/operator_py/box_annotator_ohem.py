@@ -13,9 +13,6 @@ import mxnet as mx
 import numpy as np
 from distutils.util import strtobool
 
-
-
-
 class BoxAnnotatorOHEMOperator(mx.operator.CustomOp):
     def __init__(self, num_classes, num_reg_classes, roi_per_img):
         super(BoxAnnotatorOHEMOperator, self).__init__()

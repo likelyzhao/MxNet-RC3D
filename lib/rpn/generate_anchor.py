@@ -4,6 +4,47 @@ Generate base anchors on index 0
 
 import numpy as np
 
+def generate_anchors_twin(base_size=8, scales=2**np.arange(3, 6)):
+    """
+    Generate anchor (reference) windows by enumerating aspect 
+    scales wrt a reference (0, 7) window.
+    """
+
+    base_anchor = np.array([1, base_size]) - 1
+    anchors = _scale_enum_twin(base_anchor, scales)
+    return anchors
+
+def _whctrs_twin(anchor):
+    """
+    Return width, height, x center, and y center for an anchor (window).
+    """
+
+    l = anchor[1] - anchor[0] + 1
+    x_ctr = anchor[0] + 0.5 * (l - 1)
+    return l, x_ctr
+
+def _mkanchors_twin(ls, x_ctr):
+    """
+    Given a vector of lengths (ls) around a center
+    (x_ctr), output a set of anchors (windows).
+    """
+
+    ls = ls[:, np.newaxis]
+    anchors = np.hstack((x_ctr - 0.5 * (ls - 1),
+                         x_ctr + 0.5 * (ls - 1)))
+    return anchors
+
+def _scale_enum_twin(anchor, scales):
+    """
+    Enumerate a set of anchors for each scale wrt an anchor.
+    """
+
+    l, x_ctr = _whctrs_twin(anchor)
+    ls = l * scales
+    anchors = _mkanchors_twin(ls, x_ctr)
+    return anchors
+
+
 
 def generate_anchors(base_size=16, ratios=[0.5, 1, 2],
                      scales=2 ** np.arange(3, 6)):
@@ -70,3 +111,11 @@ def _scale_enum(anchor, scales):
     hs = h * scales
     anchors = _mkanchors(ws, hs, x_ctr, y_ctr)
     return anchors
+
+if __name__ == '__main__':
+    import time
+    t = time.time()
+    a = generate_anchors_twin()
+    print time.time() - t
+    print a
+

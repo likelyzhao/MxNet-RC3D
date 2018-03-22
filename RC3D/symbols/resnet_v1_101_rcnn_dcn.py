@@ -755,7 +755,6 @@ class resnet_v1_101_rcnn_dcn(Symbol):
         res5c_relu = mx.symbol.Activation(name='res5c_relu', data=res5c, act_type='relu')
         return res5c_relu
 
-
     def get_rpn(self, conv_feat, num_anchors):
         rpn_conv = mx.sym.Convolution(
             data=conv_feat, kernel=(3, 3), pad=(1, 1), num_filter=512, name="rpn_conv_3x3")

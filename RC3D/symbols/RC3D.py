@@ -103,15 +103,24 @@ class RC3D(Symbol):
 		rpn_cls_act_reshape = mx.symbol.Reshape(
 			data=rpn_cls_act, shape=(0, 2 * num_anchors, -1, 0), name='rpn_cls_act_reshape')
 
-		rois = mx.contrib.symbol.Proposal(
-			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred, im_info=im_info, name='rois',
+
+#		rois = mx.contrib.symbol.Proposal(
+#			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred,op_type='proposal_twin',
+#			feature_stride=cfg.RPN_FEAT_STRIDE, scales=tuple(cfg.ANCHOR_SCALES), ratios=tuple(cfg.ANCHOR_RATIOS),
+#			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
+#			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
+
+#		proposal_twin
+
+		rois = mx.symbol.Custom(
+			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred,op_type='proposal_twin',
 			feature_stride=cfg.RPN_FEAT_STRIDE, scales=tuple(cfg.ANCHOR_SCALES), ratios=tuple(cfg.ANCHOR_RATIOS),
 			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
 			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
 
 		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 5), name='gt_boxes_reshape')
 
-		group = mx.symbol.Custom(rois=rois, gt_boxes=gt_boxes_reshape, op_type='proposal_target',
+		group = mx.symbol.Custom(rois=rois, gt_boxes=gt_boxes_reshape, op_type='proposal_target_twin',
 		                         num_classes=num_classes, batch_images=cfg.TRAIN.BATCH_IMAGES,
 		                         batch_rois=cfg.TRAIN.BATCH_ROIS, fg_fraction=cfg.TRAIN.FG_FRACTION)
 
