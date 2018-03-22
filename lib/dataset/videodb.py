@@ -180,7 +180,7 @@ class VIDEODB(object):
         print(json_list_path)
         with open(json_list_path) as f:
             for line in f.readlines():
-                dicts = dicts.append(json.loads(line))
+                dicts = dicts.append(json.loads(line.strip()))
         print(dicts)
         self.classes = self.generate_classes(dicts)
  #       segment = VIDEODB.generate_segment()
