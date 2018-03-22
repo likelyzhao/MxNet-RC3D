@@ -156,7 +156,7 @@ class VIDEODB(object):
     def generate_classes(self, dict_list):
         class_list = []
         for dict in dict_list:
-            for item in dict['clips']['data']:
+            for item in dict['clips'][0]['data']:
                 if item not in class_list:
                     class_list.append(item['label'])
 
