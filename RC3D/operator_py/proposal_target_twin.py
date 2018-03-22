@@ -211,7 +211,7 @@ class ProposalTargetProp(mx.operator.CustomOpProp):
         self._num_classes = int(num_classes)
         self._batch_images = int(batch_images)
         self._batch_rois = int(batch_rois)
-        self._cfg = cPickle.loads(cfg)
+        self._cfg = cfg
         self._fg_fraction = float(fg_fraction)
 
     def list_arguments(self):
