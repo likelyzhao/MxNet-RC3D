@@ -65,8 +65,26 @@ class VIDEODB(object):
     def image_path_from_index(self, index):
         raise NotImplementedError
 
-    def gt_roidb(self):
-        raise NotImplementedError
+    def gt_roidb(self,json_path):
+
+        """
+        return ground truth image regions database
+        :return: imdb[image_index]['boxes', 'gt_classes', 'gt_overlaps', 'flipped']
+        """
+        cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
+        if os.path.exists(cache_file):
+            with open(cache_file, 'rb') as fid:
+                roidb = cPickle.load(fid)
+            print '{} gt roidb loaded from {}'.format(self.name, cache_file)
+            return roidb
+
+        gt_roidb = self.create_roidb_from_json_list(json_path)
+        with open(cache_file, 'wb') as fid:
+            cPickle.dump(gt_roidb, fid, cPickle.HIGHEST_PROTOCOL)
+        print 'wrote gt roidb to {}'.format(cache_file)
+
+        return gt_roidb
+
 
     def evaluate_detections(self, detections):
         raise NotImplementedError

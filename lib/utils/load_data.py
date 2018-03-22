@@ -2,11 +2,14 @@ import numpy as np
 from dataset import *
 
 
-def load_gt_roidb(dataset_name, image_set_name, root_path, dataset_path, result_path=None,
+def load_gt_roidb(dataset_name, image_set_name, root_path, dataset_path, json_path = None,result_path=None,
                   flip=False):
     """ load ground truth roidb """
-    imdb = eval(dataset_name)(image_set_name, root_path, dataset_path, result_path)
-    roidb = imdb.gt_roidb()
+    imdb = eval(dataset_name)(image_set_name, root_path, dataset_path, result_path,json_path = json_path)
+    if dataset_name == 'VIDEODB':
+        roidb = imdb.gt_roidb(json_path)
+    else:
+        roidb = imdb.gt_roidb()
     if flip:
         roidb = imdb.append_flipped_images(roidb)
     return roidb
