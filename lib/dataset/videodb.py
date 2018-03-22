@@ -251,7 +251,7 @@ class VIDEODB(object):
                             roidb.append(flipped_tmp)
 
                 # Backward Direction
-                for end in xrange(length, win - 1, - step):
+                for end in xrange(endframeidx, win - 1, - step):
                     start = end - win
                     assert start >= 0
                     rois = db[np.logical_not(np.logical_or(db[:, 0] >= end, db[:, 1] <= start))]
