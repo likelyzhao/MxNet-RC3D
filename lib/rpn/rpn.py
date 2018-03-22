@@ -148,7 +148,7 @@ def get_twin_rpn_batch(roidb, cfg):
     # imgs, roidb = get_image(roidb, cfg)
     num_videos = 1
 
-    random_scale_inds = npr.randint(0, high=len(cfg.TRAIN.LENGTH),
+    random_scale_inds = npr.randint(0, high=len(cfg.network.LENGTH),
                                     size=num_videos)
     assert (cfg.TRAIN.BATCH_SIZE % num_videos == 0), \
         'num_videos ({}) must divide BATCH_SIZE ({})'. \
