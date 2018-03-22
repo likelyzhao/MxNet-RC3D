@@ -180,7 +180,7 @@ class VIDEODB(object):
         with open(json_list_path) as f:
             dicts = dicts.append(json.loads(f.readline()))
 
-        self.classes = VIDEODB.generate_classes(dicts)
+        self.classes = self.generate_classes(dicts)
  #       segment = VIDEODB.generate_segment()
 
         FPS = 25
