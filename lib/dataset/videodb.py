@@ -214,13 +214,15 @@ class VIDEODB(object):
                 continue
             db[:, :2] = db[:, :2] * FPS
 
+            endframeidx = int(length *FPS)
+
             for win in WINS:
                 stride = win / LENGTH
                 step = stride * STEP
                 # Forward Direction
-                for start in xrange(0, max(1, length - win + 1), step):
-                    end = min(start + win, length)
-                    assert end <= length
+                for start in xrange(0, max(1, endframeidx - win + 1), step):
+                    end = min(start + win, endframeidx)
+                    assert end <= endframeidx
                     rois = db[np.logical_not(np.logical_or(db[:, 0] >= end, db[:, 1] <= start))]
 
                     # Remove duration less than min_length
