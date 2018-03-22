@@ -42,14 +42,14 @@ def generate_roi(rois, start, end, stride):
     return tmp
 
 class VIDEODB(IMDB):
-    def __init__(self, name, image_set, root_path, dataset_path, result_path=None):
+    def __init__(self, image_set, root_path, dataset_path, result_path=None):
         """
         basic information about an image database
         :param name: name of image database will be used for any output
         :param root_path: root path store cache and proposal data
         :param dataset_path: dataset path store images and image lists
         """
-        self.name = name + '_' + image_set
+        self.name = image_set
         self.image_set = image_set
         self.root_path = root_path
         self.data_path = dataset_path
