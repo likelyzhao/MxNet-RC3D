@@ -31,6 +31,7 @@ config.network.pretrained_epoch = 0
 config.network.PIXEL_MEANS = np.array([0, 0, 0])
 config.network.IMAGE_STRIDE = 0
 config.network.RPN_FEAT_STRIDE = 8
+config.network.TEMPORAL_FEAT_STRIDE =8
 config.network.RCNN_FEAT_STRIDE = 16
 config.network.FIXED_PARAMS = ['gamma', 'beta']
 config.network.FIXED_PARAMS_SHARED = ['gamma', 'beta']

@@ -132,7 +132,7 @@ class RC3D(Symbol):
 
 		pool5 = mx.symbol.ROIPooling(
 			name='roi_pool5', data=relu5_2, rois=rois, pooled_size=(7, 7), spatial_scale=1.0 / cfg.network.RCNN_FEAT_STRIDE,
-			temporal_scale=1.0 / config.TEMPORAL_FEAT_STRIDE)
+			temporal_scale=1.0 / cfg.network.TEMPORAL_FEAT_STRIDE)
 
 		flatten = mx.symbol.Flatten(data=pool5, name="flatten")
 		fc6 = mx.symbol.FullyConnected(data=flatten, num_hidden=4096, name="fc6")
