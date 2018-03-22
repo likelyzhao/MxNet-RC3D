@@ -35,9 +35,9 @@ def generate_roi(rois, start, end, stride):
     tmp['frames'] = np.array([[0, start, end, stride]])
     tmp['bg_name'] = path + split + '/' + video
     tmp['fg_name'] = path + split + '/' + video
-    if not os.path.isfile('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg'):
-        print('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg')
-    raise
+#    if not os.path.isfile('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg'):
+#        print('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg')
+#    raise
     return tmp
 
 class VIDEODB(object):
