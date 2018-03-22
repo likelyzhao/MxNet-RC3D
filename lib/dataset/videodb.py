@@ -34,8 +34,8 @@ def generate_roi(rois, start, end, stride, root_path):
     tmp['max_overlaps'] = np.ones(len(rois))
     tmp['flipped'] = False
     tmp['frames'] = np.array([[0, start, end, stride]])
-    tmp['bg_name'] = root_path + '/' + video
-    tmp['fg_name'] = root_path + '/' + video
+    tmp['bg_name'] = root_path
+    tmp['fg_name'] = root_path
 #    if not os.path.isfile('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg'):
 #        print('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg')
 #    raise
