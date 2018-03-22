@@ -601,7 +601,6 @@ class SegmentLoader(mx.io.DataIter):
         self.cur = 0
         if self.shuffle:
             if self.aspect_grouping:
-                print(r for r in self.roidb)
                 widths = np.array([r['width'] for r in self.roidb])
                 heights = np.array([r['height'] for r in self.roidb])
                 horz = (widths >= heights)

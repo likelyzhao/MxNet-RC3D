@@ -79,7 +79,7 @@ TRAIN:
   # e2e changes behavior of anchor loader and metric
   END2END: true
   # group images with similar aspect ratio
-  ASPECT_GROUPING: true
+  ASPECT_GROUPING: false
   # R-CNN
   # rcnn rois batch size
   BATCH_ROIS: -1
