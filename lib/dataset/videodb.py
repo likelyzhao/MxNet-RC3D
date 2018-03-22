@@ -245,6 +245,7 @@ class VIDEODB(object):
                         tmp = generate_roi(rois, start, end, stride)
                         roidb.append(tmp)
                         if USE_FLIPPED:
+                            import copy
                             flipped_tmp = copy.deepcopy(tmp)
                             flipped_tmp['flipped'] = True
                             roidb.append(flipped_tmp)
