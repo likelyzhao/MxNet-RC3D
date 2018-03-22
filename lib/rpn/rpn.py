@@ -80,9 +80,10 @@ def _get_video_blob(roidb, scale_inds,cfg):
     DEBUG = False
     processed_videos = []
     video_scales = []
+    print(scale_inds)
     for i,item in enumerate(roidb):
 
-      video_length = cfg.TRAIN.LENGTH[scale_inds[0]]
+      video_length = cfg.network.LENGTH[scale_inds[0]]
       video = np.zeros((video_length, cfg.TRAIN.CROP_SIZE,
                         cfg.TRAIN.CROP_SIZE, 3))
       if cfg.INPUT == 'video':
@@ -181,8 +182,6 @@ def get_twin_rpn_batch(roidb, cfg):
 
 
     # im_array = imgs[0]
-
-
 
 def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
                   scales=(8, 16, 32), ratios=(0.5, 1, 2), allowed_border=0):
