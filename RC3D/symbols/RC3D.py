@@ -115,8 +115,8 @@ class RC3D(Symbol):
 		rois = mx.symbol.Custom(
 			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred,op_type='proposal_twin',
 			feature_stride=cfg.network.RPN_FEAT_STRIDE, scales=tuple(cfg.network.TWIN_SCALES), ratios=tuple(cfg.network.ANCHOR_RATIOS),
-			rpn_pre_nms_top_n=cfg.network.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.network.TRAIN.RPN_POST_NMS_TOP_N,
-			threshold=cfg.network.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
+			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
+			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
 
 		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 5), name='gt_boxes_reshape')
 
@@ -130,7 +130,7 @@ class RC3D(Symbol):
 		bbox_weight = group[3]
 
 		pool5 = mx.symbol.ROIPooling(
-			name='roi_pool5', data=relu5_2, rois=rois, pooled_size=(7, 7), spatial_scale=1.0 / config.RCNN_FEAT_STRIDE,
+			name='roi_pool5', data=relu5_2, rois=rois, pooled_size=(7, 7), spatial_scale=1.0 / cfg.network.RCNN_FEAT_STRIDE,
 			temporal_scale=1.0 / config.TEMPORAL_FEAT_STRIDE)
 
 		flatten = mx.symbol.Flatten(data=pool5, name="flatten")
@@ -144,13 +144,13 @@ class RC3D(Symbol):
 		bbox_pred = mx.symbol.FullyConnected(name='twin_pred', data=drop6, num_hidden=num_classes * 2)
 
 		bbox_loss_ = bbox_weight * mx.symbol.smooth_l1(name='bbox_loss_', scalar=1.0, data=(bbox_pred - bbox_target))
-		bbox_loss = mx.sym.MakeLoss(name='bbox_loss', data=bbox_loss_, grad_scale=1.0 / config.TRAIN.BATCH_ROIS)
+		bbox_loss = mx.sym.MakeLoss(name='bbox_loss', data=bbox_loss_, grad_scale=1.0 / cfg.TRAIN.BATCH_ROIS)
 
 		# reshape output
-		label = mx.symbol.Reshape(data=label, shape=(config.TRAIN.BATCH_IMAGES, -1), name='label_reshape')
-		cls_prob = mx.symbol.Reshape(data=cls_prob, shape=(config.TRAIN.BATCH_IMAGES, -1, num_classes),
+		label = mx.symbol.Reshape(data=label, shape=(cfg.TRAIN.BATCH_IMAGES, -1), name='label_reshape')
+		cls_prob = mx.symbol.Reshape(data=cls_prob, shape=(cfg.TRAIN.BATCH_IMAGES, -1, num_classes),
 		                             name='cls_prob_reshape')
-		bbox_loss = mx.symbol.Reshape(data=bbox_loss, shape=(config.TRAIN.BATCH_IMAGES, -1, 4 * num_classes),
+		bbox_loss = mx.symbol.Reshape(data=bbox_loss, shape=(cfg.TRAIN.BATCH_IMAGES, -1, 4 * num_classes),
 		                              name='bbox_loss_reshape')
 
 		group = mx.symbol.Group([rpn_cls_prob, rpn_bbox_loss, cls_prob, bbox_loss, mx.symbol.BlockGrad(label)])
