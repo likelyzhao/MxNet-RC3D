@@ -52,11 +52,13 @@ from utils.lr_scheduler import WarmupMultiFactorScheduler
 def train_net(args, ctx, pretrained, epoch, prefix, begin_epoch, end_epoch, lr, lr_step):
     logger, final_output_path = create_logger(config.output_path, args.cfg, config.dataset.image_set)
     prefix = os.path.join(final_output_path, prefix)
+    pprint.pprint(prefix)
 
     # load symbol
     shutil.copy2(os.path.join(curr_path, 'symbols', config.symbol + '.py'), final_output_path)
     sym_instance = eval(config.symbol + '.' + config.symbol)()
     sym = sym_instance.get_symbol(config, is_train=True)
+    pprint.pprint(sym)
     feat_sym = sym.get_internals()['rpn_cls_score_output']
 
     # setup multi-gpu
