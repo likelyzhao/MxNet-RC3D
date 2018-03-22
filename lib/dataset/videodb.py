@@ -177,6 +177,7 @@ class VIDEODB(object):
 
         import json
         dicts = []
+        print(json_list_path)
         with open(json_list_path) as f:
             dicts = dicts.append(json.loads(f.readline()))
 
