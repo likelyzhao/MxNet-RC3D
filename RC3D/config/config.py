@@ -44,6 +44,7 @@ config.network.FRAME_SIZE = (128, 171)
 config.network.CROP_SIZE  = 112
 config.network.LENGTH = (512,)
 config.network.num_anchors = 19
+config.network.BATCH_SIZE = 128
 
 
 # dataset related params
