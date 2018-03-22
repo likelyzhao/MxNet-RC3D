@@ -23,7 +23,7 @@ def get_flipped_entry_outclass_wrapper(IMDB_instance, seg_rec):
 
 path = './preprocess/activityNet/frames/'
 
-def generate_roi(rois, start, end, stride):
+def generate_roi(rois, start, end, stride, root_path):
     split = 'train'
     video = '1'
     tmp = {}
@@ -34,8 +34,8 @@ def generate_roi(rois, start, end, stride):
     tmp['max_overlaps'] = np.ones(len(rois))
     tmp['flipped'] = False
     tmp['frames'] = np.array([[0, start, end, stride]])
-    tmp['bg_name'] = path + split + '/' + video
-    tmp['fg_name'] = path + split + '/' + video
+    tmp['bg_name'] = root_path + '/' + video
+    tmp['fg_name'] = root_path + '/' + video
 #    if not os.path.isfile('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg'):
 #        print('../../' + tmp['bg_name'] + '/image_' + str(end-1).zfill(5) + '.jpg')
 #    raise
@@ -51,7 +51,7 @@ class VIDEODB(IMDB):
         """
         self.name = image_set
         self.image_set = image_set
-        self.root_path = root_path
+        self.root_path = root_path # frame level dataset path
         self.data_path = dataset_path
         self._result_path = result_path
 
@@ -242,7 +242,7 @@ class VIDEODB(IMDB):
                     if len(rois) > 0:
                         rois[:, 0] = np.maximum(start, rois[:, 0])
                         rois[:, 1] = np.minimum(end, rois[:, 1])
-                        tmp = generate_roi(rois, start, end, stride)
+                        tmp = generate_roi(rois, start, end, stride,self.root_path)
                         tmp['url'] = dict['url']
                         roidb.append(tmp)
                         if USE_FLIPPED:
@@ -274,7 +274,7 @@ class VIDEODB(IMDB):
                     if len(rois) > 0:
                         rois[:, 0] = np.maximum(start, rois[:, 0])
                         rois[:, 1] = np.minimum(end, rois[:, 1])
-                        tmp = generate_roi(rois, start, end, stride)
+                        tmp = generate_roi(rois, start, end, stride,self.root_path)
                         tmp['url'] = dict['url']
                         roidb.append(tmp)
                         if USE_FLIPPED:

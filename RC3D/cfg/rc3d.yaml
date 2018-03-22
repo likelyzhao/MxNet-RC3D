@@ -53,7 +53,7 @@ dataset:
   dataset_path: "./data"
   json_path: "train.json"
   image_set: activitynet
-  root_path: "./data"
+  root_path: "/workspace/data/R-C3D/preprocess/activityNet/frames/training/"
   test_image_set: 2007_test
   proposal: rpn
 TRAIN:
