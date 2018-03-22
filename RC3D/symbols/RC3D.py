@@ -121,7 +121,7 @@ class RC3D(Symbol):
 		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 5), name='gt_boxes_reshape')
 
 		group = mx.symbol.Custom(rois=rois, gt_boxes=gt_boxes_reshape, op_type='proposal_target_twin',
-		                         num_classes=num_classes, batch_images=cfg.network.TRAIN.BATCH_IMAGES,
+		                         num_classes=num_classes, batch_images=cfg.TRAIN.BATCH_IMAGES,
 		                         batch_rois=cfg.TRAIN.BATCH_ROIS, fg_fraction=cfg.TRAIN.FG_FRACTION)
 
 		rois = group[0]
