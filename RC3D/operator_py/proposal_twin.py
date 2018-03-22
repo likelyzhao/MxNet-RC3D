@@ -7,7 +7,7 @@
 
 import yaml
 
-from rpn.generate_anchors import generate_anchors_twin
+from rpn.generate_anchor import generate_anchors_twin
 import mxnet as mx
 import numpy as np
 import numpy.random as npr

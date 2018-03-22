@@ -1,7 +1,8 @@
 import mxnet as mx
 from config import config
 from utils.symbol import Symbol
-
+from operator_py.proposal_twin import *
+from operator_py.proposal_target_twin import *
 
 class RC3D(Symbol):
 	def __init__(self):
