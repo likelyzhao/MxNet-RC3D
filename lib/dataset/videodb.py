@@ -16,6 +16,7 @@ from PIL import Image
 from bbox.bbox_transform import bbox_overlaps
 from multiprocessing import Pool, cpu_count
 import json
+from imdb import IMDB
 
 def get_flipped_entry_outclass_wrapper(IMDB_instance, seg_rec):
     return IMDB_instance.get_flipped_entry(seg_rec)
@@ -40,7 +41,7 @@ def generate_roi(rois, start, end, stride):
 #    raise
     return tmp
 
-class VIDEODB(object):
+class VIDEODB(IMDB):
     def __init__(self, name, image_set, root_path, dataset_path, result_path=None):
         """
         basic information about an image database
@@ -148,7 +149,7 @@ class VIDEODB(object):
         if append_gt:
             print 'appending ground truth annotations'
             rpn_roidb = self.load_rpn_roidb(gt_roidb)
-            roidb = VIDEODB.merge_roidbs(gt_roidb, rpn_roidb)
+            roidb = self.merge_roidbs(gt_roidb, rpn_roidb)
         else:
             roidb = self.load_rpn_roidb(gt_roidb)
         return roidb
@@ -167,7 +168,6 @@ class VIDEODB(object):
         for i, cls in enumerate(class_list):
             classes[cls] = i + 1
         return classes
-
 
     def create_roidb_from_json_list(self, json_list_path):
         """
@@ -282,7 +282,6 @@ class VIDEODB(object):
                             roidb.append(flipped_tmp)
 
         return roidb
-
 
     def creat_label(self,des):
         pass

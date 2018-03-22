@@ -48,11 +48,11 @@ network:
   - 32
   NUM_ANCHORS: 9
 dataset:
-  NUM_CLASSES: 21
+  NUM_CLASSES: 200
   dataset: VIDEODB
   dataset_path: "./data"
   json_path: "train.json"
-  image_set: 2007_trainval
+  image_set: activitynet
   root_path: "./data"
   test_image_set: 2007_test
   proposal: rpn
