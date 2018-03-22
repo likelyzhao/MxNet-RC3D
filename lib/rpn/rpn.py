@@ -84,18 +84,18 @@ def _get_video_blob(roidb, scale_inds,cfg):
     for i,item in enumerate(roidb):
 
       video_length = cfg.network.LENGTH[scale_inds[0]]
-      video = np.zeros((video_length, cfg.TRAIN.CROP_SIZE,
-                        cfg.TRAIN.CROP_SIZE, 3))
+      video = np.zeros((video_length, cfg.network.CROP_SIZE,
+                        cfg.network.CROP_SIZE, 3))
       if cfg.INPUT == 'video':
         j = 0
-        random_idx = [np.random.randint(cfg.TRAIN.FRAME_SIZE[1]-cfg.TRAIN.CROP_SIZE),
-                      np.random.randint(cfg.TRAIN.FRAME_SIZE[0]-cfg.TRAIN.CROP_SIZE)]
+        random_idx = [np.random.randint(cfg.network.FRAME_SIZE[1]-cfg.network.CROP_SIZE),
+                      np.random.randint(cfg.network.FRAME_SIZE[0]-cfg.network.CROP_SIZE)]
         for video_info in item['frames']:
           prefix = item['fg_name'] if video_info[0] else item['bg_name']
           for idx in xrange(video_info[1], video_info[2], video_info[3]):
             frame = cv2.imread('%s/image_%s.jpg'%(prefix,str(idx+1).zfill(5)))
-            frame = prep_im_for_blob(frame, cfg.PIXEL_MEANS, tuple(cfg.TRAIN.FRAME_SIZE[::-1]),
-                                     cfg.TRAIN.CROP_SIZE, random_idx)
+            frame = prep_im_for_blob(frame, cfg.network.PIXEL_MEANS, tuple(cfg.network.FRAME_SIZE[::-1]),
+                                     cfg.network.CROP_SIZE, random_idx)
 
             if item['flipped']:
                 frame = frame[:, ::-1, :]
@@ -109,14 +109,14 @@ def _get_video_blob(roidb, scale_inds,cfg):
 
       else:
         j = 0
-        random_idx = [np.random.randint(cfg.TRAIN.FRAME_SIZE[1]-cfg.TRAIN.CROP_SIZE),
-                      np.random.randint(cfg.TRAIN.FRAME_SIZE[0]-cfg.TRAIN.CROP_SIZE)]
+        random_idx = [np.random.randint(cfg.network.FRAME_SIZE[1]-cfg.network.CROP_SIZE),
+                      np.random.randint(cfg.network.FRAME_SIZE[0]-cfg.network.CROP_SIZE)]
         for video_info in item['frames']:
           prefix = item['fg_name'] if video_info[0] else item['bg_name']
           for idx in xrange(video_info[1], video_info[2]):
             frame = cv2.imread('%s/image_%s.jpg'%(prefix,str(idx+1).zfill(5)))
-            frame = prep_im_for_blob(frame, cfg.PIXEL_MEANS, tuple(cfg.TRAIN.FRAME_SIZE[::-1]),
-                                     cfg.TRAIN.CROP_SIZE, random_idx)
+            frame = prep_im_for_blob(frame, cfg.PIXEL_MEANS, tuple(cfg.network.FRAME_SIZE[::-1]),
+                                     cfg.network.CROP_SIZE, random_idx)
 
             if item['flipped']:
                 frame = frame[:, ::-1, :]
