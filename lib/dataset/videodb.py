@@ -156,9 +156,11 @@ class VIDEODB(object):
     def generate_classes(self, dict_list):
         class_list = []
         for dict in dict_list:
-            for item in dict['clips'][0]['data']:
-                if item not in class_list:
-                    class_list.append(item['label'])
+            for item in dict['clips']:
+                if item['type'] == 'video_detection':
+                    for item_i in dict['clips'][0]['data']:
+                        if item_i not in class_list:
+                            class_list.append(item_i['label'])
 
         class_list = list(set(class_list))
         classes = {'Background': 0}
