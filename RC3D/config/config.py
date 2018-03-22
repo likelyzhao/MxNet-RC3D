@@ -30,12 +30,14 @@ config.network.pretrained = ''
 config.network.pretrained_epoch = 0
 config.network.PIXEL_MEANS = np.array([0, 0, 0])
 config.network.IMAGE_STRIDE = 0
-config.network.RPN_FEAT_STRIDE = 16
+config.network.RPN_FEAT_STRIDE = 8
 config.network.RCNN_FEAT_STRIDE = 16
 config.network.FIXED_PARAMS = ['gamma', 'beta']
 config.network.FIXED_PARAMS_SHARED = ['gamma', 'beta']
 config.network.ANCHOR_SCALES = (8, 16, 32)
 config.network.ANCHOR_RATIOS = (0.5, 1, 2)
+config.network.TWIN_SCALES = (1,1.25, 1.5,1.75, 2,2.5, 3,3.5, 4,4.5, 5,5.5, 6,7, 8,9,10,11,12,14,16,
+                              18,20,22,24,28,32,36,40,44,52,60,68,76,84,92,100)
 config.network.NUM_ANCHORS = len(config.network.ANCHOR_SCALES) * len(config.network.ANCHOR_RATIOS)
 config.network.FRAME_SIZE = (128, 171)
 config.network.CROP_SIZE  = 112

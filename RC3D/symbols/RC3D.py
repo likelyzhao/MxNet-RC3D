@@ -114,14 +114,14 @@ class RC3D(Symbol):
 
 		rois = mx.symbol.Custom(
 			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred,op_type='proposal_twin',
-			feature_stride=cfg.RPN_FEAT_STRIDE, scales=tuple(cfg.ANCHOR_SCALES), ratios=tuple(cfg.ANCHOR_RATIOS),
-			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
-			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
+			feature_stride=cfg.network.RPN_FEAT_STRIDE, scales=tuple(cfg.network.TWIN_SCALES), ratios=tuple(cfg.network.ANCHOR_RATIOS),
+			rpn_pre_nms_top_n=cfg.network.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.network.TRAIN.RPN_POST_NMS_TOP_N,
+			threshold=cfg.network.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
 
 		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 5), name='gt_boxes_reshape')
 
 		group = mx.symbol.Custom(rois=rois, gt_boxes=gt_boxes_reshape, op_type='proposal_target_twin',
-		                         num_classes=num_classes, batch_images=cfg.TRAIN.BATCH_IMAGES,
+		                         num_classes=num_classes, batch_images=cfg.network.TRAIN.BATCH_IMAGES,
 		                         batch_rois=cfg.TRAIN.BATCH_ROIS, fg_fraction=cfg.TRAIN.FG_FRACTION)
 
 		rois = group[0]
