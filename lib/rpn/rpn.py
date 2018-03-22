@@ -94,10 +94,10 @@ def _get_video_blob(roidb, scale_inds,cfg):
           prefix = item['fg_name'] if video_info[0] else item['bg_name']
           for idx in xrange(video_info[1], video_info[2], video_info[3]):
 
-            video = item['url'].split('v_')[-1].split('.mp4')[0]
+            video_name = item['url'].split('v_')[-1].split('.mp4')[0]
 
             import os
-            frame_name = os.path.join(prefix,video,'image_%s.jpg' %  str(idx + 1).zfill(5))
+            frame_name = os.path.join(prefix,video_name,'image_%s.jpg' %  str(idx + 1).zfill(5))
             print(frame_name)
 #            frame = cv2.imread('%s/image_%s.jpg'%(prefix,str(idx+1).zfill(5)))
             frame = cv2.imread(frame_name)
