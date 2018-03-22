@@ -243,6 +243,7 @@ class VIDEODB(IMDB):
                         rois[:, 0] = np.maximum(start, rois[:, 0])
                         rois[:, 1] = np.minimum(end, rois[:, 1])
                         tmp = generate_roi(rois, start, end, stride)
+                        tmp['url'] = dict['url']
                         roidb.append(tmp)
                         if USE_FLIPPED:
                             import copy
@@ -274,6 +275,7 @@ class VIDEODB(IMDB):
                         rois[:, 0] = np.maximum(start, rois[:, 0])
                         rois[:, 1] = np.minimum(end, rois[:, 1])
                         tmp = generate_roi(rois, start, end, stride)
+                        tmp['url'] = dict['url']
                         roidb.append(tmp)
                         if USE_FLIPPED:
                             import copy
