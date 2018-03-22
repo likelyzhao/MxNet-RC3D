@@ -50,7 +50,8 @@ network:
 dataset:
   NUM_CLASSES: 21
   dataset: VIDEODB
-  json_path: "./data/terror"
+  dataset_path: "./data"
+  json_path: "train.json"
   image_set: 2007_trainval
   root_path: "./data"
   test_image_set: 2007_test
