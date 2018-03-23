@@ -166,6 +166,7 @@ def get_twin_rpn_batch(roidb, cfg):
             format(num_videos, cfg.network.BATCH_SIZE)
 
     im_array = _get_video_blob(roidb,random_scale_inds,cfg)
+    print(type(im_array))
 
     if roidb[0]['gt_classes'].size > 0:
         assert len(roidb) == 1, "Single batch only"
