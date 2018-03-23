@@ -182,7 +182,7 @@ def get_twin_rpn_batch(roidb, cfg):
 #        bbox_inside_blob = np.zeros(bbox_targets_blob.shape, dtype=np.float32)
         gt_windows = np.empty((0, 3), dtype=np.float32)
 
-    data = {'data': im_array }
+    data = {'data': im_array[0] }
     label = {'gt_windows': gt_windows}
 
     return data,label
