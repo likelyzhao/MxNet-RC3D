@@ -82,7 +82,6 @@ def _get_video_blob(roidb, scale_inds,cfg):
     video_scales = []
     print(scale_inds)
     for i,item in enumerate(roidb):
-
       video_length = cfg.network.LENGTH[scale_inds[0]]
       video = np.zeros((video_length, cfg.network.CROP_SIZE,
                         cfg.network.CROP_SIZE, 3))
@@ -166,7 +165,7 @@ def get_twin_rpn_batch(roidb, cfg):
             format(num_videos, cfg.network.BATCH_SIZE)
 
     im_array = _get_video_blob(roidb,random_scale_inds,cfg)
-    print(type(im_array))
+    print(type(im_array[0]))
 
     if roidb[0]['gt_classes'].size > 0:
         assert len(roidb) == 1, "Single batch only"
