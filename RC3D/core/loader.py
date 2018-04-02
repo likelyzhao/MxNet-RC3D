@@ -739,7 +739,7 @@ class SegmentLoader(mx.io.DataIter):
         # get testing data for multigpu
         data, label = get_twin_rpn_batch(iroidb, self.cfg) #
         data_shape = {k: v.shape for k, v in data.items()}
-        del data_shape['im_info']
+#        del data_shape['im_info']
         _, feat_shape, _ = self.feat_sym.infer_shape(**data_shape)
         feat_shape = [int(i) for i in feat_shape[0]]
 
