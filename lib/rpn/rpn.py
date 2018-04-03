@@ -241,7 +241,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 #    self._feat_stride = layer_params['feat_stride']
 
     # map of shape (..., H, W)#
-    length, height, width = im_info[0],im_info[1],im_info
+    length, height, width = im_info[0],im_info[1],im_info[2]
     # GT boxes (x1, x2, label)
 #    gt_boxes = bottom[1].data
 
@@ -299,7 +299,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
     # label: 1 is positive, 0 is negative, -1 is dont care
     labels = np.empty((len(inds_inside),), dtype=np.float32)
     labels.fill(-1)
-    max_overlaps = []
+    max_overlaps =[]
     if gt_boxes.size > 0 and anchors.size >0:
         # overlap between the anchors and the gt boxes
         # overlaps (ex, gt)
