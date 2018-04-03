@@ -355,7 +355,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
     # twin_targets = _compute_targets(anchors, gt_boxes[argmax_overlaps, :])
 
     if gt_boxes.size > 0 and anchors.size >0:
-        twin_targets[:] = _compute_targets(anchors, twin_targets[argmax_overlaps, :4])
+        twin_targets[:] = _compute_targets(anchors, twin_targets[argmax_overlaps, :])
 
     twin_inside_weights = np.zeros((len(inds_inside), 2), dtype=np.float32)
     twin_inside_weights[labels == 1, :] = np.array(cfg.TRAIN.RPN_TWIN_INSIDE_WEIGHTS)
