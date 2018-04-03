@@ -178,7 +178,6 @@ def get_twin_rpn_batch(roidb, cfg):
             format(num_videos, cfg.network.BATCH_SIZE)
 
     im_array = _get_video_blob(roidb,random_scale_inds,cfg)
-    print(type(im_array[0]))
 
     if roidb[0]['gt_classes'].size > 0:
         assert len(roidb) == 1, "Single batch only"
@@ -195,7 +194,7 @@ def get_twin_rpn_batch(roidb, cfg):
 #        bbox_inside_blob = np.zeros(bbox_targets_blob.shape, dtype=np.float32)
         gt_windows = np.empty((0, 3), dtype=np.float32)
 
-    data = {'data': im_array[0] }
+    data = {'data': im_array}
     label = {'gt_windows': gt_windows}
 
     return data,label
