@@ -95,6 +95,7 @@ def train_net(args, ctx, pretrained, epoch, prefix, begin_epoch, end_epoch, lr, 
     if DEBUG:
         data_shape_dict_debug = dict(train_data.provide_data_single)
         pprint.pprint(data_shape_dict_debug)
+        del data_shape_dict_debug['gt_windows']
         print(feat_sym.infer_shape(**data_shape_dict_debug))
     sym_instance.infer_shape(data_shape_dict)
 
