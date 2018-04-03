@@ -569,7 +569,7 @@ class SegmentLoader(mx.io.DataIter):
             self.data_name = ['data', 'gt_windows']
         else:
             self.data_name = ['data']
-        self.label_name = ['label', 'bbox_target', 'bbox_weight']
+        self.label_name = ['label', 'bbox_target', 'bbox_inside_weight', 'bbox_outside_weight' ]
 
         # status variable for synchronization between get_data and get_label
         self.cur = 0

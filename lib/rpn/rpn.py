@@ -420,7 +420,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
     label = {'label': labels,
              'bbox_target': bbox_targets,
              'bbox_inside_weight': bbox_inside_weights,
-             'bbox_inside_weight': bbox_outside_weights}
+             'bbox_outside_weight': bbox_outside_weights}
     return label
 
 
