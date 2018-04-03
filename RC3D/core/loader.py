@@ -649,7 +649,7 @@ class SegmentLoader(mx.io.DataIter):
         im_info = [[max_shapes['data'][2], max_shapes['data'][3], 1.0]]
         _, feat_shape, _ = self.feat_sym.infer_shape(**max_shapes)
 
-        label = assign_anchor(feat_shape[0], np.zeros((0, 5)), im_info, self.cfg,
+        label = assign_anchor_twin(feat_shape[0], np.zeros((0, 3)), im_info, self.cfg,
                               self.feat_stride, self.anchor_scales, self.anchor_ratios, self.allowed_border)
 
         label = [label[k] for k in self.label_name]
