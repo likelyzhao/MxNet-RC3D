@@ -240,6 +240,12 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 #    self._num_anchors = self._anchors.shape[0]
 #    self._feat_stride = layer_params['feat_stride']
 
+    if DEBUG:
+        print 'anchor_scales = {}'.format(scales)
+        print 'feat_stride = {}'.format(feat_stride)
+
+
+
     # map of shape (..., H, W)#
     length, height, width = im_info[0],im_info[1],im_info[2]
     # GT boxes (x1, x2, label)
@@ -261,9 +267,6 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
     if DEBUG:
         print 'anchors:'
         print base_anchors
-        print 'anchor shapes:'
-        print np.hstack((base_anchors[:, 2::4] - base_anchors[:, 0::4],
-                         base_anchors[:, 3::4] - base_anchors[:, 1::4]))
         print 'base_anchors:'
         print  base_anchors
         print 'im_info', im_info
