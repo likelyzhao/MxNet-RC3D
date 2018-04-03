@@ -155,5 +155,5 @@ class RC3D(Symbol):
 
 		group = mx.symbol.Group([rpn_cls_prob, rpn_bbox_loss, cls_prob, bbox_loss, mx.symbol.BlockGrad(label)])
 
-
+		self.sym = group
 		return group
