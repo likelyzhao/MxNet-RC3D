@@ -82,7 +82,7 @@ def _get_video_blob(roidb, scale_inds,cfg):
     video_scales = []
     print(scale_inds)
     for i,item in enumerate(roidb):
-      video_length = cfg.network.LENGTH[scale_inds[0]]
+      video_length = cfg.network.MAXLENGTH[scale_inds[0]]
       video = np.zeros((video_length, cfg.network.CROP_SIZE,
                         cfg.network.CROP_SIZE, 3))
       if cfg.INPUT == 'video':

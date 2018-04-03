@@ -43,7 +43,7 @@ config.network.TWIN_SCALES = (1,1.25, 1.5,1.75, 2,2.5, 3,3.5, 4,4.5, 5,5.5, 6,7,
 config.network.NUM_ANCHORS = len(config.network.ANCHOR_SCALES) * len(config.network.ANCHOR_RATIOS)
 config.network.FRAME_SIZE = (128, 171)
 config.network.CROP_SIZE  = 112
-config.network.LENGTH = (512,)
+config.network.MAXLENGTH = (768,)
 config.network.num_anchors = 19
 config.network.BATCH_SIZE = 128
 
