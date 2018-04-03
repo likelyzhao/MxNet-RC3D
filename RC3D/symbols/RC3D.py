@@ -23,7 +23,7 @@ class RC3D(Symbol):
 
 		input_data = mx.symbol.Variable(name="data")
 
-		gt_boxes = mx.symbol.Variable(name="gt_boxes")
+		gt_boxes = mx.symbol.Variable(name="gt_windows")
 		rpn_label = mx.symbol.Variable(name='label')
 		rpn_bbox_target = mx.symbol.Variable(name='bbox_target')
 		rpn_bbox_inside_weight = mx.symbol.Variable(name='bbox_inside_weight')
