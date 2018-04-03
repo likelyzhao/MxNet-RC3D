@@ -264,6 +264,8 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
         print 'anchor shapes:'
         print np.hstack((base_anchors[:, 2::4] - base_anchors[:, 0::4],
                          base_anchors[:, 3::4] - base_anchors[:, 1::4]))
+        print 'base_anchors:'
+        print  base_anchors
         print 'im_info', im_info
         print 'height', feat_height, 'width', feat_width
         print 'gt_boxes shape', gt_boxes.shape
