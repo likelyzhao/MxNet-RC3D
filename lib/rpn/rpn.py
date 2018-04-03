@@ -101,6 +101,9 @@ def _get_video_blob(roidb, scale_inds,cfg):
             print(frame_name)
 #            frame = cv2.imread('%s/image_%s.jpg'%(prefix,str(idx+1).zfill(5)))
             frame = cv2.imread(frame_name)
+            if frame is None:
+                print "error load image in = {}".format(frame_name)
+                continue
 
             frame = prep_im_for_blob(frame, cfg.network.PIXEL_MEANS, tuple(cfg.network.FRAME_SIZE[::-1]),
                                      cfg.network.CROP_SIZE, random_idx)
@@ -419,7 +422,6 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
              'bbox_inside_weight': bbox_inside_weights,
              'bbox_inside_weight': bbox_outside_weights}
     return label
-
 
 
 def _compute_targets(ex_rois, gt_rois):
