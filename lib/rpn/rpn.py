@@ -145,7 +145,19 @@ def _get_video_blob(roidb, scale_inds,cfg):
     # Create a blob to hold the input images
     # blob = video_list_to_blob(processed_videos)
 
-    return processed_videos
+    shape = processed_videos[0].shape
+    num_videos = len(processed_videos)
+    blob = np.zeros((num_videos, shape[0], shape[1], shape[2], shape[3]),
+                    dtype=np.float32)
+    for i in xrange(num_videos):
+        blob[i] = processed_videos[i]
+    # Move channels (axis 3) to axis 1
+    # Axis order will become: (batch elem, channel, length, height, width)
+    channel_swap = (0, 4, 1, 2, 3)
+    blob = blob.transpose(channel_swap)
+
+
+    return blob
 
 def get_twin_rpn_batch(roidb, cfg):
     """
