@@ -91,7 +91,7 @@ def train_net(args, ctx, pretrained, epoch, prefix, begin_epoch, end_epoch, lr, 
 
     data_shape_dict = dict(train_data.provide_data_single + train_data.provide_label_single)
     pprint.pprint(data_shape_dict)
-    print(feat_sym.infer_shape(data_shape_dict))
+    print(feat_sym.infer_shape(**data_shape_dict))
     sym_instance.infer_shape(data_shape_dict)
 
     # load and initialize params
