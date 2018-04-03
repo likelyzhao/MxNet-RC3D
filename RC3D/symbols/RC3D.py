@@ -26,7 +26,7 @@ class RC3D(Symbol):
 		gt_boxes = mx.symbol.Variable(name="gt_boxes")
 		rpn_label = mx.symbol.Variable(name='label')
 		rpn_bbox_target = mx.symbol.Variable(name='bbox_target')
-		rpn_bbox_weight = mx.symbol.Variable(name='bbox_weight')
+		rpn_bbox_weight = mx.symbol.Variable(name='bbox_inside_weight')
 
 		###  conv1
 		conv1 = mx.symbol.Convolution(data=input_data, kernel=(3, 3, 3), pad=(1, 1, 1), num_filter=64, name="conv1a")
@@ -115,7 +115,7 @@ class RC3D(Symbol):
 
 		rois = mx.symbol.Custom(
 			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred,op_type='proposal_twin',
-			feat_stride=cfg.network.RPN_FEAT_STRIDE, scales=tuple(cfg.network.TWIN_SCALES), ratios=tuple(cfg.network.ANCHOR_RATIOS),
+			feat_stride=cfg.network.TWIN_STRIDE, scales=tuple(cfg.network.TWIN_SCALES), ratios=tuple(cfg.network.ANCHOR_RATIOS),
 			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
 			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
 
