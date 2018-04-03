@@ -18,6 +18,8 @@ from generate_anchor import generate_anchors,generate_anchors_twin
 from bbox.bbox_transform import bbox_overlaps, bbox_transform
 from twin.twin_transform import twin_transform,twin_overlaps
 
+DEBUG = False
+
 def get_rpn_testbatch(roidb, cfg):
     """
     return a dict of testbatch
@@ -91,14 +93,16 @@ def _get_video_blob(roidb, scale_inds,cfg):
                       np.random.randint(cfg.network.FRAME_SIZE[0]-cfg.network.CROP_SIZE)]
         for video_info in item['frames']:
           prefix = item['fg_name'] if video_info[0] else item['bg_name']
-          print(video_info)
+          if DEBUG:
+             print(video_info)
           for idx in xrange(video_info[1], video_info[2], video_info[3]):
 
             video_name = item['url'].split('v_')[-1].split('.mp4')[0]
 
             import os
             frame_name = os.path.join(prefix,video_name,'image_%s.jpg' %  str(idx + 1).zfill(5))
-            print(frame_name)
+            if DEBUG:
+                print(frame_name)
 #            frame = cv2.imread('%s/image_%s.jpg'%(prefix,str(idx+1).zfill(5)))
             frame = cv2.imread(frame_name)
             if frame is None:
@@ -170,9 +174,12 @@ def get_twin_rpn_batch(roidb, cfg):
     """
     assert len(roidb) == 1, 'Single batch only'
     # imgs, roidb = get_image(roidb, cfg)
+
+
     num_videos = 1
 
-    print(roidb)
+    if DEBUG:
+        print(roidb)
 
     random_scale_inds = npr.randint(0, high=len(cfg.network.MAXLENGTH),
                                     size=num_videos)
