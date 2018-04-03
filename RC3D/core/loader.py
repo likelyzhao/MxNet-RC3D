@@ -562,7 +562,7 @@ class SegmentLoader(mx.io.DataIter):
         # infer properties from roidb
         self.size = len(roidb)
         self.index = np.arange(self.size)
-        self.data_size = [config.network.MAXLENGTH[0],config.network.CROP_SIZE,config.network.CROP_SIZE]
+        self.data_size =[[config.network.MAXLENGTH[0],config.network.CROP_SIZE,config.network.CROP_SIZE]]
 
         # decide data and label names
         if config.TRAIN.END2END:
