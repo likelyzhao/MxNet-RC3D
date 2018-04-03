@@ -27,7 +27,7 @@ class RC3D(Symbol):
 		rpn_label = mx.symbol.Variable(name='label')
 		rpn_bbox_target = mx.symbol.Variable(name='bbox_target')
 		rpn_bbox_inside_weight = mx.symbol.Variable(name='bbox_inside_weight')
-		rpn_bbox_outside_weight = mx.symbol.Variable(name='bbox_outside_weight')
+ #		rpn_bbox_outside_weight = mx.symbol.Variable(name='bbox_outside_weight')
 
 		###  conv1
 		conv1 = mx.symbol.Convolution(data=input_data, kernel=(3, 3, 3), pad=(1, 1, 1), num_filter=64, name="conv1a")
