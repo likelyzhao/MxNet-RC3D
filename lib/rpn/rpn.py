@@ -388,6 +388,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
         stds = np.sqrt(_squared_sums / _counts - means ** 2)
         print 'means', means
         print 'stdevs', stds
+        print  labels.shape
 
     # map up to original set of anchors
     labels = _unmap(labels, total_anchors, inds_inside, fill=-1)
