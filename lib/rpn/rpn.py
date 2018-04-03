@@ -91,6 +91,7 @@ def _get_video_blob(roidb, scale_inds,cfg):
                       np.random.randint(cfg.network.FRAME_SIZE[0]-cfg.network.CROP_SIZE)]
         for video_info in item['frames']:
           prefix = item['fg_name'] if video_info[0] else item['bg_name']
+          print(video_info)
           for idx in xrange(video_info[1], video_info[2], video_info[3]):
 
             video_name = item['url'].split('v_')[-1].split('.mp4')[0]
