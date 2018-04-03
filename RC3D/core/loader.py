@@ -745,10 +745,10 @@ class SegmentLoader(mx.io.DataIter):
         feat_shape = [int(i) for i in feat_shape[0]]
 
         # add gt_boxes to data for e2e
-        data['gt_boxes'] = label['gt_boxes'][np.newaxis, :, :]
+        data['gt_windows'] = label['gt_windows'][np.newaxis, :, :]
 
         # assign anchor for label
-        label = assign_anchor_twin(feat_shape, label['gt_boxes'], self.data_size, self.cfg,
+        label = assign_anchor_twin(feat_shape, label['gt_windows'], self.data_size, self.cfg,
                               self.feat_stride, self.anchor_scales,
                               self.anchor_ratios, self.allowed_border)
         return {'data': data, 'label': label}
