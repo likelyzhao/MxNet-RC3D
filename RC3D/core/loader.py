@@ -566,7 +566,7 @@ class SegmentLoader(mx.io.DataIter):
 
         # decide data and label names
         if config.TRAIN.END2END:
-            self.data_name = ['data', 'gt_boxes']
+            self.data_name = ['data', 'gt_windows']
         else:
             self.data_name = ['data']
         self.label_name = ['label', 'bbox_target', 'bbox_weight']
