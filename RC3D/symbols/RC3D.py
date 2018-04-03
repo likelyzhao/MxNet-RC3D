@@ -26,7 +26,8 @@ class RC3D(Symbol):
 		gt_boxes = mx.symbol.Variable(name="gt_boxes")
 		rpn_label = mx.symbol.Variable(name='label')
 		rpn_bbox_target = mx.symbol.Variable(name='bbox_target')
-		rpn_bbox_weight = mx.symbol.Variable(name='bbox_inside_weight')
+		rpn_bbox_inside_weight = mx.symbol.Variable(name='bbox_inside_weight')
+		rpn_bbox_outside_weight = mx.symbol.Variable(name='bbox_outside_weight')
 
 		###  conv1
 		conv1 = mx.symbol.Convolution(data=input_data, kernel=(3, 3, 3), pad=(1, 1, 1), num_filter=64, name="conv1a")
@@ -92,7 +93,7 @@ class RC3D(Symbol):
 		rpn_cls_prob = mx.symbol.SoftmaxOutput(data=rpn_cls_score_reshape, label=rpn_label, multi_output=True,
 		                                       normalization='valid', use_ignore=True, ignore_label=-1, name="rpn_cls_prob")
 		# bounding box regression
-		rpn_bbox_loss_ = rpn_bbox_weight * mx.symbol.smooth_l1(name='rpn_loss_twin', scalar=3.0,
+		rpn_bbox_loss_ = rpn_bbox_inside_weight * mx.symbol.smooth_l1(name='rpn_loss_twin', scalar=3.0,
 		                                                       data=(rpn_bbox_pred - rpn_bbox_target))
 		rpn_bbox_loss = mx.sym.MakeLoss(name='rpn_bbox_loss', data=rpn_bbox_loss_,
 		                                grad_scale=1.0 / cfg.TRAIN.RPN_BATCH_SIZE)
