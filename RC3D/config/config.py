@@ -130,6 +130,7 @@ config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.3
 config.TRAIN.RPN_CLOBBER_POSITIVES = False
 # rpn bounding box regression params
 config.TRAIN.RPN_BBOX_WEIGHTS = (1.0, 1.0, 1.0, 1.0)
+config.TRAIN.RPN_TWIN_INSIDE_WEIGHTS = (1.0, 1.0)
 config.TRAIN.RPN_POSITIVE_WEIGHT = -1.0
 
 # used for end2end training
