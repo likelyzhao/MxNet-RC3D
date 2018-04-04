@@ -122,7 +122,7 @@ class RC3D(Symbol):
 			cls_prob=rpn_cls_act_reshape, bbox_pred=rpn_bbox_pred,op_type='proposal_twin',
 			feat_stride=cfg.network.TWIN_STRIDE, scales=tuple(cfg.network.TWIN_SCALES), ratios=tuple(cfg.network.ANCHOR_RATIOS),
 			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
-			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
+			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE,name='proposal_twin')
 
 		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 3), name='gt_boxes_reshape')
 
