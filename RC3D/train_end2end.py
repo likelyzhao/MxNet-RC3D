@@ -94,7 +94,7 @@ def train_net(args, ctx, pretrained, epoch, prefix, begin_epoch, end_epoch, lr, 
     pprint.pprint(data_shape_dict)
     DEBUG = True
     if DEBUG:
-        feat_sym = sym.get_internals()['proposal_target_twin_output']
+        feat_sym = sym.get_internals()['proposal_twin_output']
         pprint.pprint(feat_sym)
         data_shape_dict_debug = dict(train_data.provide_data_single)
         pprint.pprint(data_shape_dict_debug)
