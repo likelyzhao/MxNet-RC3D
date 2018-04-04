@@ -647,7 +647,7 @@ class SegmentLoader(mx.io.DataIter):
         DEBUG = True
         max_shapes = dict(max_data_shape + max_label_shape)
         input_batch_size = max_shapes['data'][0]
-        im_info = [[max_shapes['data'][2], max_shapes['data'][3], 1.0]]
+        im_info = [[max_shapes['data'][3], max_shapes['data'][4], 1.0]]
         if DEBUG:
             print 'max_shapes :{0}'.format(max_shapes)
             print 'input_batch_size :{0}'.format(input_batch_size)
