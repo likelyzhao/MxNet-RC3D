@@ -124,7 +124,7 @@ class RC3D(Symbol):
 			rpn_pre_nms_top_n=cfg.TRAIN.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg.TRAIN.RPN_POST_NMS_TOP_N,
 			threshold=cfg.TRAIN.RPN_NMS_THRESH, rpn_min_size=cfg.TRAIN.RPN_MIN_SIZE)
 
-		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 5), name='gt_boxes_reshape')
+		gt_boxes_reshape = mx.symbol.Reshape(data=gt_boxes, shape=(-1, 3), name='gt_boxes_reshape')
 
 		group = mx.symbol.Custom(rois=rois, gt_boxes=gt_boxes_reshape, op_type='proposal_target_twin',
 		                         num_classes=num_classes, batch_images=cfg.TRAIN.BATCH_IMAGES,
