@@ -743,7 +743,7 @@ class SegmentLoader(mx.io.DataIter):
 #        del data_shape['im_info']
         _, feat_shape, _ = self.feat_sym.infer_shape(**data_shape)
         feat_shape = [int(i) for i in feat_shape[0]]
-
+        print(feat_shape)
         # add gt_boxes to data for e2e
         data['gt_windows'] = label['gt_windows'][np.newaxis, :, :]
 
