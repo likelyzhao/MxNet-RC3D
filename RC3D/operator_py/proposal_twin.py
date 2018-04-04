@@ -225,6 +225,7 @@ class ProposalTwinProp(mx.operator.CustomOpProp):
     def __init__(self, feat_stride='16', scales='(8, 16, 32)', ratios='(0.5, 1, 2)', output_score='False',
                  rpn_pre_nms_top_n='6000', rpn_post_nms_top_n='300', threshold='0.3', rpn_min_size='16'):
         super(ProposalTwinProp, self).__init__(need_top_grad=False)
+        DEBUG = True
         self._feat_stride = int(feat_stride)
         self._scales = scales
         self._ratios = ratios
@@ -233,6 +234,10 @@ class ProposalTwinProp(mx.operator.CustomOpProp):
         self._rpn_post_nms_top_n = int(rpn_post_nms_top_n)
         self._threshold = float(threshold)
         self._rpn_min_size = int(rpn_min_size)
+        if DEBUG:
+            print "ProposalTwinProp"
+            print "_scales :",scales
+            print "feat_stride",feat_stride
 
 
 
