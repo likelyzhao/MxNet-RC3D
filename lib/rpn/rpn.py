@@ -258,6 +258,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 
     # map of shape (..., H, W)#
     length, height, width = im_info[0],im_info[1],im_info[2]
+    length = feat_shape[-3]
     # GT boxes (x1, x2, label)
 #    gt_boxes = bottom[1].data
 
