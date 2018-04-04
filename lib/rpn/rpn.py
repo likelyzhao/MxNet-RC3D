@@ -423,6 +423,9 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
     bbox_outside_weights = bbox_outside_weights.reshape((1, length, feat_height, feat_width, A * 2)).transpose((0, 4, 3, 1, 2))
 
 
+    if DEBUG:
+        print 'lable shape：', labels.shape
+
 
     label = {'label': labels,
              'bbox_target': bbox_targets,
