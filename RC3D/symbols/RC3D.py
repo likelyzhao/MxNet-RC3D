@@ -129,7 +129,7 @@ class RC3D(Symbol):
 
 		group = mx.symbol.Custom(rois=rois, gt_boxes=gt_boxes_reshape, op_type='proposal_target_twin',
 		                         num_classes=num_classes, batch_images=cfg.TRAIN.BATCH_IMAGES,
-		                         batch_rois=cfg.TRAIN.BATCH_ROIS, fg_fraction=cfg.TRAIN.FG_FRACTION,cfg=cfg)
+		                         batch_rois=cfg.TRAIN.BATCH_ROIS, fg_fraction=cfg.TRAIN.FG_FRACTION,cfg=cfg,name='proposal_target_twin')
 
 		rois = group[0]
 		label = group[1]
