@@ -107,7 +107,7 @@ class RC3D(Symbol):
 		rpn_cls_act = mx.symbol.SoftmaxActivation(
 			data=rpn_cls_score_reshape, mode="channel", name="rpn_cls_act")
 		rpn_cls_act_reshape = mx.symbol.Reshape(
-			data=rpn_cls_act, shape=(0, 2 * num_anchors, -1, 0), name='rpn_cls_act_reshape')
+			data=rpn_cls_act, shape=(0, 2 * num_anchors, -1, 0, 0), name='rpn_cls_act_reshape')
 
 
 #		rois = mx.contrib.symbol.Proposal(
