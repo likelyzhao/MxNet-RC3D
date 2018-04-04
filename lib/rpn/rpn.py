@@ -242,7 +242,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
             ret[inds, :] = data
         return ret
 
-    DEBUG = True
+    DEBUG = False
     im_info = im_info[0]
 
 #    anchor_scales = layer_params.get('scales', (2, 4, 5, 6, 8, 9, 10, 12, 14, 16))
