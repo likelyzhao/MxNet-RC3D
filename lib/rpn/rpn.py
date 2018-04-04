@@ -251,6 +251,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 #    self._feat_stride = layer_params['feat_stride']
 
     if DEBUG:
+        print "assign_anchor_twin"
         print 'anchor_scales = {}'.format(scales)
         print 'feat_stride = {}'.format(feat_stride)
 
@@ -263,7 +264,6 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 #    gt_boxes = bottom[1].data
 
     if DEBUG:
-        print ''
         print 'length, height, width: ({}, {}, {})'.format(length, height, width)
         print 'rpn: gt_boxes.shape', gt_boxes.shape
         print 'rpn: gt_boxes', gt_boxes
@@ -428,6 +428,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
         print 'lable shape:', labels.shape
         print 'A :', A
         print 'length:',length
+        print "ends"
 
 
     label = {'label': labels,
