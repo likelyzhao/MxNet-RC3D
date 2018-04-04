@@ -251,6 +251,7 @@ class ProposalTwinProp(mx.operator.CustomOpProp):
             return ['output']
 
     def infer_shape(self, in_shape):
+        print(in_shape)
         cls_prob_shape = in_shape[0]
         bbox_pred_shape = in_shape[1]
         assert cls_prob_shape[0] == bbox_pred_shape[0], 'ROI number does not equal in cls and reg'
