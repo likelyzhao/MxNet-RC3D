@@ -85,6 +85,12 @@ class RC3D(Symbol):
 
 		rpn_bbox_pred = mx.symbol.Convolution(data=rpn_output, kernel=(1, 1, 1), num_filter=2*num_anchors, name="rpn_twin_pred")
 
+		# bounding box regression
+		rpn_bbox_loss_ = rpn_bbox_inside_weight * mx.symbol.smooth_l1(name='rpn_loss_twin', scalar=3.0,
+		                                                       data=(rpn_bbox_pred - rpn_bbox_target))
+		rpn_bbox_loss = mx.sym.MakeLoss(name='rpn_bbox_loss', data=rpn_bbox_loss_,
+		                                grad_scale=1.0 / cfg.TRAIN.RPN_BATCH_SIZE)
+
 		# prepare rpn data
 		rpn_cls_score_reshape = mx.symbol.Reshape(
 			data=rpn_cls_score, shape=(0, 2, -1, 0), name="rpn_cls_score_reshape")
@@ -96,11 +102,6 @@ class RC3D(Symbol):
 		rpn_cls_prob = mx.symbol.SoftmaxOutput(data=rpn_cls_score_reshape, label=rpn_label, multi_output=True,
 		                                       normalization='valid', use_ignore=True, ignore_label=-1, name="rpn_cls_prob")
 
-		# bounding box regression
-		rpn_bbox_loss_ = rpn_bbox_inside_weight * mx.symbol.smooth_l1(name='rpn_loss_twin', scalar=3.0,
-		                                                       data=(rpn_bbox_pred - rpn_bbox_target))
-		rpn_bbox_loss = mx.sym.MakeLoss(name='rpn_bbox_loss', data=rpn_bbox_loss_,
-		                                grad_scale=1.0 / cfg.TRAIN.RPN_BATCH_SIZE)
 
 		### classification subnet
 

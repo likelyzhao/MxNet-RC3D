@@ -262,9 +262,9 @@ class ProposalTwinProp(mx.operator.CustomOpProp):
         score_shape = (self._rpn_post_nms_top_n, 1)
 
         if self._output_score:
-            return [cls_prob_shape, bbox_pred_shape, im_info_shape], [output_shape, score_shape]
+            return [cls_prob_shape, bbox_pred_shape], [output_shape, score_shape]
         else:
-            return [cls_prob_shape, bbox_pred_shape, im_info_shape], [output_shape]
+            return [cls_prob_shape, bbox_pred_shape], [output_shape]
 
     def create_operator(self, ctx, shapes, dtypes):
         return ProposalOperator(self._feat_stride, self._scales, self._ratios, self._output_score,
