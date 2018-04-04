@@ -394,7 +394,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
         _squared_sums = (twin_targets[labels == 1, :] ** 2).sum(axis=0)
         _counts = np.sum(labels == 1)
         means = _sums / (_counts + 1e-14)
-        stds = np.sqrt(_squared_sums / _counts - means ** 2)
+        stds = np.sqrt(_squared_sums / (_counts+ 1e-14) - means ** 2)
         print 'means', means
         print 'stdevs', stds
         print  labels.shape
