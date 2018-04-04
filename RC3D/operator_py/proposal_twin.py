@@ -257,7 +257,7 @@ class ProposalTwinProp(mx.operator.CustomOpProp):
 
         batch_size = cls_prob_shape[0]
         im_info_shape = (batch_size, 3)
-        output_shape = (self._rpn_post_nms_top_n, 5)
+        output_shape = (self._rpn_post_nms_top_n, 3)
         score_shape = (self._rpn_post_nms_top_n, 1)
 
         if self._output_score:
