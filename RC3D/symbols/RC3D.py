@@ -90,8 +90,12 @@ class RC3D(Symbol):
 			data=rpn_cls_score, shape=(0, 2, -1, 0), name="rpn_cls_score_reshape")
 
 
+#		rpn_cls_prob = mx.symbol.SoftmaxOutput(data=rpn_cls_score_reshape, label=rpn_label, multi_output=True,
+#		                                       normalization='valid', use_ignore=True, ignore_label=-1, name="rpn_cls_prob")
+
 		rpn_cls_prob = mx.symbol.SoftmaxOutput(data=rpn_cls_score_reshape, label=rpn_label, multi_output=True,
 		                                       normalization='valid', use_ignore=True, ignore_label=-1, name="rpn_cls_prob")
+
 		# bounding box regression
 		rpn_bbox_loss_ = rpn_bbox_inside_weight * mx.symbol.smooth_l1(name='rpn_loss_twin', scalar=3.0,
 		                                                       data=(rpn_bbox_pred - rpn_bbox_target))
