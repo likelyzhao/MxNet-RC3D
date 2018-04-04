@@ -45,7 +45,7 @@ config.network.NUM_ANCHORS = len(config.network.ANCHOR_SCALES) * len(config.netw
 config.network.FRAME_SIZE = (128, 171)
 config.network.CROP_SIZE  = 112
 config.network.MAXLENGTH = (768,)
-config.network.num_anchors = 19
+config.network.num_anchors = 37
 config.network.BATCH_SIZE = 128
 
 
