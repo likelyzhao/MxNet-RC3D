@@ -407,7 +407,7 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 
 
     if DEBUG:
-        if max_overlaps.size !=0:
+        if len(max_overlaps) !=0:
             print 'rpn: max max_overlaps', np.max(max_overlaps)
         print 'rpn: num_positives', np.sum(labels == 1)
         print 'rpn: num_negatives', np.sum(labels == 0)
