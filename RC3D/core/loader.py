@@ -644,9 +644,16 @@ class SegmentLoader(mx.io.DataIter):
             max_data_shape = []
         if max_label_shape is None:
             max_label_shape = []
+        DEBUG = True
         max_shapes = dict(max_data_shape + max_label_shape)
         input_batch_size = max_shapes['data'][0]
         im_info = [[max_shapes['data'][2], max_shapes['data'][3], 1.0]]
+        if DEBUG:
+            print 'max_shapes :{0}'.format(max_shapes)
+            print 'input_batch_size :{0}'.format(input_batch_size)
+            print 'im_info :{0}'.format(im_info)
+
+
         _, feat_shape, _ = self.feat_sym.infer_shape(**max_shapes)
 
         label = assign_anchor_twin(feat_shape[0], np.zeros((0, 3)), im_info, self.cfg,
