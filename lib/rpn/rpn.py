@@ -425,6 +425,8 @@ def assign_anchor_twin(feat_shape, gt_boxes, im_info, cfg, feat_stride=16,
 
     if DEBUG:
         print 'lable shape:', labels.shape
+        print 'A :', A
+        print 'length:',length
 
 
     label = {'label': labels,
