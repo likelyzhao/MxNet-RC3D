@@ -25,7 +25,7 @@
  * \brief psroi pooling operator
  * \author Yi Li, Tairui Chen, Guodong Zhang, Haozhi Qi, Jifeng Dai
 */
-#include "./psroi_pooling-inl.h"
+#include "./twin_roi_pooling-inl.h"
 #include <mshadow/base.h>
 #include <mshadow/tensor.h>
 #include <mshadow/packet-inl.h>
