@@ -6,8 +6,8 @@
  * \brief psroi pooling operator and symbol
  * \author Yi Li, Tairui Chen, Guodong Zhang, Haozhi Qi, Jifeng Dai
 */
-#ifndef MXNET_OPERATOR_CONTRIB_PSROI_POOLING_INL_H_
-#define MXNET_OPERATOR_CONTRIB_PSROI_POOLING_INL_H_
+#ifndef MXNET_OPERATOR_CONTRIB_TWINROI_POOLING_INL_H_
+#define MXNET_OPERATOR_CONTRIB_TWINROI_POOLING_INL_H_
 
 #include <dmlc/logging.h>
 #include <dmlc/parameter.h>
@@ -121,10 +121,11 @@ class TWinROIPoolingOp : public Operator {
 
 // Decalre Factory function, used for dispatch specialization
 template<typename xpu>
-Operator* CreateOp(PSROIPoolingParam param, int dtype);
+Operator* CreateOp(TWinROIPoolingParam param, int dtype);
+
 
 #if DMLC_USE_CXX11
-class PSROIPoolingProp : public OperatorProperty {
+class TWinROIPoolingProp : public OperatorProperty {
  public:
   std::vector<std::string> ListArguments() const override {
     return {"data", "rois"};
@@ -203,7 +204,7 @@ class PSROIPoolingProp : public OperatorProperty {
     const std::vector<int> &out_grad,
     const std::vector<int> &in_data,
     const std::vector<int> &out_data) const override {
-    return {out_grad[psroipool::kOut], in_data[psroipool::kBox]};
+    return {out_grad[twinroipool::kOut], in_data[twinroipool::kBox]};
   }
 
 
@@ -217,7 +218,7 @@ class PSROIPoolingProp : public OperatorProperty {
 
 
  private:
-  PSROIPoolingParam param_;
+  TWinROIPoolingParam param_;
 };  // class PSROIPoolingProp
 #endif
 }  // namespace op
