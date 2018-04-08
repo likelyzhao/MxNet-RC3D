@@ -65,8 +65,8 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
 
   const int out_size_c = out.size(2) * out.size(3);
   const int out_size = channels_ * out_size_c;
-  const int max_idx_size_c = max_idx.size(2) * max_idx.size(3);
-  const int max_idx_size = channels_ * max_idx_size_c;
+//  const int max_idx_size_c = max_idx.size(2) * max_idx.size(3);
+//  const int max_idx_size = channels_ * max_idx_size_c;
   // For each ROI R = [batch_index x1 y1 x2 y2]: max pool over R
   for (int n = 0; n < num_rois; ++n) {
     // Increment ROI data pointer
