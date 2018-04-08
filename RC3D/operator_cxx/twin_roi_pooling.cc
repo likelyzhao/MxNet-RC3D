@@ -79,8 +79,8 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
     int roi_start_h = 0;
     int roi_end_w = data.size(3) - 1;
     int roi_end_h = data.size(4) - 1;
-    int roi_start_time = bottom_rois_n[1] * spatial_scale_
-    int roi_end_time = bottom_rois_n[2] * spatial_scale_
+    int roi_start_time = bottom_rois_n[1] * temporal_scale_
+    int roi_end_time = bottom_rois_n[2] * temporal_scale_
 
     assert(roi_batch_ind >= 0);
     assert(static_cast<index_t>(roi_batch_ind) < data.size(0) /* batch size */);
@@ -126,8 +126,8 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
               int lend = static_cast<int>(ceil(static_cast<Dtype>(pl + 1)
                                              * bin_size_l));
 
-              lstart = min(max(lstart + roi_start_time, 0), length_);
-              lend = min(max(lend + roi_start_time, 0), length_);
+              lstart = min(max(lstart + roi_start_time, 0), roi_time_length);
+              lend = min(max(lend + roi_start_time, 0), roi_time_length);
 
               hstart = min(max(hstart + roi_start_h, 0), height_);
               hend = min(max(hend + roi_start_h, 0), height_);
