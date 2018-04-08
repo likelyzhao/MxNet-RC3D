@@ -38,7 +38,7 @@ struct TWinROIPoolingParam : public dmlc::Parameter<TWinROIPoolingParam> {
   int pooled_size;
   int pooled_length;
   int group_size;
-  DMLC_DECLARE_PARAMETER(PSROIPoolingParam) {
+  DMLC_DECLARE_PARAMETER(TWinROIPoolingParam) {
     DMLC_DECLARE_FIELD(temporal_scale_).set_range(0.0, 1.0)
     .describe("Ratio of input feature map height (or w) to raw image height (or w). "
     "Equals the reciprocal of total stride in convolutional layers");
