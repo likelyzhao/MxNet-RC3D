@@ -38,10 +38,10 @@ using std::floor;
 using std::ceil;
 
 namespace mshadow {
-template<typename DType>
-inline void TWinROIPoolForward(const Tensor<cpu, 4, DType> &out,
-                           const Tensor<cpu, 5, DType> &data,
-                           const Tensor<cpu, 2, DType> &bbox,
+template<typename Dtype>
+inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
+                           const Tensor<cpu, 5, Dtype> &data,
+                           const Tensor<cpu, 2, Dtype> &bbox,
                            const float temporal_scale_,
                            const int output_dim_,
                            const int group_size_) {
