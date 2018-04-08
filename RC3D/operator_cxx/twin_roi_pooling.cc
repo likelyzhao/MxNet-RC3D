@@ -164,8 +164,8 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
 }
 
 template<typename DType>
-inline void TWinROIPoolBackwardAcc(const Tensor<cpu, 5, DType> &in_grad,
-                            const Tensor<cpu, 4, DType> &out_grad,
+inline void TWinROIPoolBackwardAcc(const Tensor<cpu, 4, DType> &in_grad,
+                            const Tensor<cpu, 5, DType> &out_grad,
                             const Tensor<cpu, 2, DType> &bbox,
                             const float spatial_scale_,
                             const int output_dim_,
