@@ -50,7 +50,7 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
   const Dtype *bottom_data = data.dptr_;
   const Dtype *bottom_rois = bbox.dptr_;
   Dtype *top_data = out.dptr_;
-  Dtype *argmax_data = max_idx.dptr_;
+//  Dtype *argmax_data = max_idx.dptr_;
   const int channels_ = data.size(1);
   const int time_length = data.size(2);
   const int height_ = data.size(3);
@@ -72,7 +72,7 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
     // Increment ROI data pointer
     const Dtype *bottom_rois_n = bottom_rois + n * bbox.size(1);
     Dtype *top_data_n = top_data + n * out_size;
-    Dtype *argmax_data_n = argmax_data + n * max_idx_size;
+//    Dtype *argmax_data_n = argmax_data + n * max_idx_size;
     int pooled_length_ = 1;
     int roi_batch_ind = bottom_rois_n[0];
     int roi_start_w = 0;
@@ -105,7 +105,7 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
       // Increment all data pointers
       const Dtype* batch_data_c = batch_data + c * data_size_c;
       Dtype* top_data_c = top_data_n + c * out_size_c;
-      Dtype* argmax_data_c = argmax_data_n + c * max_idx_size_c;
+//      Dtype* argmax_data_c = argmax_data_n + c * max_idx_size_c;
       for (int pl = 0; pl < pooled_length_; ++pl) {
           for (int ph = 0; ph < pooled_height_; ++ph) {
             for (int pw = 0; pw < pooled_width_; ++pw) {
@@ -139,7 +139,7 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
               const int pool_index = (pl * pooled_length_ + ph) * pooled_width_ + pw;
               if (is_empty) {
                 top_data_c[pool_index] = 0;
-                argmax_data_c[pool_index] = -1;
+//                argmax_data_c[pool_index] = -1;
               }
               for (int l = lstart; l < lend; ++l) {
                   for (int h = hstart; h < hend; ++h) {
@@ -147,7 +147,7 @@ inline void TWinROIPoolForward(const Tensor<cpu, 4, Dtype> &out,
                       const int index = (l * length_ + h) * width_ + w;
                       if (batch_data_c[index] > top_data_c[pool_index]) {
                         top_data_c[pool_index] = batch_data_c[index];
-                        argmax_data_c[pool_index] = index;
+//                        argmax_data_c[pool_index] = index;
                       }
                     }
                   }
